@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class EmailVerficationService {
 
     public void scheduleEmailConfirmation(MyUser user){
-
+        System.out.println("scheduleEmailConfirmation");
     }
 }

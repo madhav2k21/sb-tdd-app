@@ -99,6 +99,15 @@ class MyUserServiceImplTest {
 
     }
 
+    @Test
+    void callRealMethod(){
+        when(usersRepository.save(any(MyUser.class))).thenReturn(user);
+        doCallRealMethod().when(emailVerficationService).scheduleEmailConfirmation(any(MyUser.class));
+
+        usersService.createUser(user);
+        verify(emailVerficationService, times(1)).scheduleEmailConfirmation(any(MyUser.class));
+    }
+
     private MyUser buildUser() {
         MyUser u1 = new MyUser(101, "madhav", "Hyderabad", "ma@ma");
         return u1;
